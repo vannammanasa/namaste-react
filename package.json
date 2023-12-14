@@ -1,0 +1,32 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "Am learning react course",
+  
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vannammanasa/namaste-react.git"
+  },
+  "keywords": [
+    "React",
+    "namastereact",
+    "manasa"
+  ],
+  "author": "manasa vannam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vannammanasa/namaste-react/issues"
+  },
+  "homepage": "https://github.com/vannammanasa/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
