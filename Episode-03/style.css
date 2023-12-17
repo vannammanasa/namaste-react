@@ -1,3 +1,14 @@
 #heading{
   color:red;
 }
+
+#logo{
+  height:20px;
+  width:30px;
+}
+#search{
+  margin:15px;
+}
+#user-logo{
+  margin:10px;
+}
