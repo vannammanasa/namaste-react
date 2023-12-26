@@ -1,0 +1,1004 @@
+
+/*
+1. Is JSX mandatory for react?
+
+JSX :- 
+  - It provides a clean a way  to declare our UI components.
+  - We use HTML based syntax to declare our UI in JSX and easier way to create elements.
+  - Ex:- const jsxHeading = <h1>Namaste React using JSX </h1>;
+  - JSX gets transpiled to parcel through babel and then JS Engine receives code which browser understands.
+  - finally,JSX is not a requirement for using React. But Using React without JSX is especially convenient when you don’t want to set up compilation in your build environment.
+  
+2. is ES6 mandatory for React?
+
+- ES6 stands for Ecmascript6 and is the 6th version created to standardized Javascript.
+- ES6 introduces many features like let,const,arrow functions etc., to write code in a more efficient way.
+- ES6 is not mandatory for React, simply we can use some other imports instead of it.
+
+3. Writing comments in JSX?
+- we can first use curly braces, inside them and have to use /* */
+
+
+/*4. What is <React.Fragment></React.Fragment> and <></> ?
+   - Wrap elements in <Fragment> to group them together in situations where you need a single element. Grouping elements in Fragment has no effect on the resulting DOM; it is the same as if the elements were not grouped. The empty JSX tag <></> is shorthand for <Fragment></Fragment> in most cases.
+
+ & If we want to pass key to a Fragment, we can’t use the <>...</> syntax. we have to explicitly import Fragment from 'react' and render <Fragment key={RequiredKey}>...</Fragment>.
+
+
+
+
+5. Virtual DOM?
+ - It is nothing but, a logical DOM or Javascript DOM
+ - It works at the application level,so, it will occupy memory space in the application.
+ - It will check the previous state with new state in the component structure which usually called as "Reconciliation" by using diff algorithm.If any changes,then it will relaod only component state.So, it will consume less memory but will improve high performance
+
+
+
+
+6.Config driven UI?
+ - Configuration-driven UI, also known as config-driven UI or configuration-based UI - 
+ For instance- 
+ When you build real a world application so we want our website work in many country or many places,& we control our fontend it is known as using Config-Driven UI . API or Backend Driven which is data Comming from API.
+- In a configuration-driven UI, the layout, styles, and other properties of UI elements are defined in a configuration file or database, which can be easily modified without requiring changes to the codebase. This approach makes it easier to customize the UI for different use cases or user groups, without the need for extensive coding.
+- The configuration file or database may also define the data sources and the data to be displayed in the UI, as well as the interactions and behavior of the UI components. This allows for greater flexibility and adaptability of the UI to different use cases, as the configuration data can be easily modified or replaced without affecting the underlying application logic
+
+
+7. Can we use index as key in react?
+ - React uses key attribute to track the changes in the list i.e., help identify which items have changed,removed or added from the array or iterator.
+ 
+
+- In the absence of keys, React would have a difficult time identifying individual elements within an array, which could lead to inefficient DOM updates. By providing a unique key for each item, React can quickly determine if an element has been added, removed, or rearranged, leading to faster and more efficient updates.
+
+- However, it’s crucial to note that keys should be stable, predictable, and unique. Using indexes as keys, a common but discouraged practice, might seem convenient, but can lead to issues with component state and performance, especially when items are reordered, added, or removed from a list. Ideally, keys should be derived from unique and stable identifiers, such as IDs from your data.
+
+-Thus, Keys play a pivotal role in helping React maintain and efficiently update rendered lists by providing a way to uniquely identify each item in the list. Proper use of keys ensures that the user interface remains consistent and responsive, even as underlying data changes
+
+8. Prop in react?ways to-
+ - Props are referred as properties
+ -  React components use props to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind us of HTML attributes, but we can pass any JavaScript value through them, including objects, arrays, and functions.
+
+
+
+Coding Example:-
+//Building food ordering app
+
+
+/*
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+
+
+
+
+
+
+const Header = () =>{
+  return (
+    //<div>
+    <div className = "header">
+      <div className = "logo-container">
+        <img className = "logo" src="https://tse3.mm.bing.net/th?id=OIP.DJXkSF9B--LYE8SM7M8yCAHaHa&pid=Api&P=0&h=220/" /> 
+      </div>
+      <div className = "nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About us</li>
+
+          <li>Contact Us</li>
+
+          <li>Cart</li>
+
+        </ul>
+      </div>
+    
+    </div>
+    
+  //</div>
+  );
+};
+
+const Restaurantcard=(props)=>{    //props is an object which make all rest-cards dynamic 
+
+  //console.log(props); 
+const {resData} = props;
+  const {name,cloudinaryImageId,cuisines,costForTwo,avgRating} = resData?.info; //optional chaining
+
+
+  return (
+    <div className ="res-card">
+      <img className ="card-image" alt="res-logo" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId} />  
+      
+
+      <h3>{name}</h3>
+      <h4>{cuisines.join(',')}</h4>
+      <h4>{costForTwo}</h4>
+      <h4>{avgRating}stars</h4>
+    </div>
+  )
+}
+
+
+
+
+const resList = [  //mentioning all dynamic data in a list form
+  {
+    info: {
+      id: "368036",
+      name: "Theobroma",
+      cloudinaryImageId: "b033728dcb0101ceb19bff0e1e1f6474",
+      locality: "Begumpet",
+      areaName: "Shivaji Nagar",
+      costForTwo: "₹500 for two",
+      cuisines: ["Desserts"],
+      avgRating: 4.5,
+      feeDetails: {
+        restaurantId: "368036",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 7400,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 7400,
+      },
+      parentId: "1040",
+      avgRatingString: "4.5",
+      totalRatingsString: "5K+",
+      sla: {
+        deliveryTime: 31,
+        lastMileTravel: 6.7,
+        serviceability: "SERVICEABLE",
+        slaString: "31 mins",
+        lastMileTravelString: "6.7 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-11 23:00:00",
+        opened: true,
+      },
+      badges: {
+        imageBadges: [
+          {
+            imageId: "v1669879258/GFF_logo_new_xbycg6.png",
+            description: "gourmet",
+          },
+        ],
+      },
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "gourmet",
+                  imageId: "v1669879258/GFF_logo_new_xbycg6.png",
+                },
+              },
+            ],
+          },
+          textBased: {},
+          textExtendedBadges: {},
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "10% OFF",
+        subHeader: "ABOVE ₹159",
+        discountTag: "FLAT DEAL",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/theobroma-begumpet-shivaji-nagar-hyderabad-368036",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "392146",
+      name: "Istah - The Mediterranean Way",
+      cloudinaryImageId: "9a01f2935fcb5ae05426db8264062102",
+      locality: "Marredpally",
+      areaName: "West Marredpally",
+      costForTwo: "₹250 for two",
+      cuisines: [
+        "Mediterranean",
+        "Snacks",
+        "Biryani",
+        "Grill",
+        "Kebabs",
+        "Arabian",
+        "Lebanese",
+        "Beverages",
+        "Desserts",
+        "Italian",
+        "Turkish",
+      ],
+      avgRating: 4.3,
+      feeDetails: {
+        restaurantId: "392146",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 6400,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 6400,
+      },
+      parentId: "3518",
+      avgRatingString: "4.3",
+      totalRatingsString: "10K+",
+      sla: {
+        deliveryTime: 32,
+        lastMileTravel: 6.1,
+        serviceability: "SERVICEABLE",
+        slaString: "32 mins",
+        lastMileTravelString: "6.1 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-12 00:00:00",
+        opened: true,
+      },
+      badges: {
+        imageBadges: [
+          {
+            imageId: "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+            description: "OnlyOnSwiggy",
+          },
+        ],
+        textExtendedBadges: [
+          {
+            iconId: "guiltfree/GF_Logo_android_3x",
+            shortDescription: "options available",
+            fontColor: "#7E808C",
+          },
+        ],
+      },
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "OnlyOnSwiggy",
+                  imageId:
+                    "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+                },
+              },
+            ],
+          },
+          textBased: {},
+          textExtendedBadges: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "",
+                  fontColor: "#7E808C",
+                  iconId: "guiltfree/GF_Logo_android_3x",
+                  shortDescription: "options available",
+                },
+              },
+            ],
+          },
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "60% OFF",
+        subHeader: "UPTO ₹110",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/istah-the-mediterranean-way-marredpally-west-marredpally-hyderabad-392146",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "72623",
+      name: "Pizza Hut",
+      cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
+      locality: "Kompally",
+      areaName: "Kompally",
+      costForTwo: "₹350 for two",
+      cuisines: ["Pizzas"],
+      avgRating: 3.8,
+      feeDetails: {
+        restaurantId: "72623",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 6100,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 6100,
+      },
+      parentId: "721",
+      avgRatingString: "3.8",
+      totalRatingsString: "10K+",
+      sla: {
+        deliveryTime: 35,
+        lastMileTravel: 5,
+        serviceability: "SERVICEABLE",
+        slaString: "35 mins",
+        lastMileTravelString: "5.0 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-11 23:00:00",
+        opened: true,
+      },
+      badges: {},
+      isOpen: true,
+      aggregatedDiscountInfoV2: {},
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {},
+          textBased: {},
+          textExtendedBadges: {},
+        },
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/pizza-hut-kompally-hyderabad-72623",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "12167",
+      name: "Subway",
+      cloudinaryImageId: "1ace5fa65eff3e1223feb696c956b38b",
+      locality: "Opp Bowenpally Market",
+      areaName: "Diamond point",
+      costForTwo: "₹350 for two",
+      cuisines: ["Salads", "Snacks", "Desserts", "Beverages"],
+      avgRating: 3.9,
+      feeDetails: {
+        restaurantId: "12167",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 3000,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 3000,
+      },
+      parentId: "2",
+      avgRatingString: "3.9",
+      totalRatingsString: "10K+",
+      sla: {
+        deliveryTime: 29,
+        lastMileTravel: 2.5,
+        serviceability: "SERVICEABLE",
+        slaString: "29 mins",
+        lastMileTravelString: "2.5 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-12 00:00:00",
+        opened: true,
+      },
+      badges: {
+        textExtendedBadges: [
+          {
+            iconId: "guiltfree/GF_Logo_android_3x",
+            shortDescription: "options available",
+            fontColor: "#7E808C",
+          },
+        ],
+      },
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {},
+          textBased: {},
+          textExtendedBadges: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "",
+                  fontColor: "#7E808C",
+                  iconId: "guiltfree/GF_Logo_android_3x",
+                  shortDescription: "options available",
+                },
+              },
+            ],
+          },
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "40% OFF",
+        subHeader: "UPTO ₹80",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/subway-opp-bowenpally-market-diamond-point-hyderabad-12167",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "92504",
+      name: "LunchBox - Meals and Thalis",
+      cloudinaryImageId: "s2j4yf6ysfhjjkt9mhuj",
+      locality: "MAHALAXMI TRADE CENTER",
+      areaName: "Karkhana",
+      costForTwo: "₹200 for two",
+      cuisines: [
+        "Biryani",
+        "North Indian",
+        "Punjabi",
+        "Healthy Food",
+        "Desserts",
+        "Beverages",
+      ],
+      avgRating: 4,
+      feeDetails: {
+        restaurantId: "92504",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 4100,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 4100,
+      },
+      parentId: "4925",
+      avgRatingString: "4.0",
+      totalRatingsString: "10K+",
+      sla: {
+        deliveryTime: 32,
+        lastMileTravel: 3,
+        serviceability: "SERVICEABLE",
+        slaString: "32 mins",
+        lastMileTravelString: "3.0 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-11 23:59:00",
+        opened: true,
+      },
+      badges: {
+        textExtendedBadges: [
+          {
+            iconId: "guiltfree/GF_Logo_android_3x",
+            shortDescription: "options available",
+            fontColor: "#7E808C",
+          },
+        ],
+      },
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {},
+          textBased: {},
+          textExtendedBadges: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "",
+                  fontColor: "#7E808C",
+                  iconId: "guiltfree/GF_Logo_android_3x",
+                  shortDescription: "options available",
+                },
+              },
+            ],
+          },
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "ITEMS",
+        subHeader: "AT ₹149",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/lunchbox-meals-and-thalis-mahalaxmi-trade-center-karkhana-hyderabad-92504",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "122340",
+      name: "The Bowl Company",
+      cloudinaryImageId: "bb6049fae59b8a2413a9177eb0338b49",
+      locality: "Marredpally",
+      areaName: "West Marredpally",
+      costForTwo: "₹250 for two",
+      cuisines: [
+        "Pan-Asian",
+        "Continental",
+        "North Indian",
+        "Desserts",
+        "American",
+        "Asian",
+        
+        
+      ],
+      avgRating: 4.2,
+      feeDetails: {
+        restaurantId: "122340",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 6400,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 6400,
+      },
+      parentId: "4317",
+      avgRatingString: "4.2",
+      totalRatingsString: "10K+",
+      sla: {
+        deliveryTime: 31,
+        lastMileTravel: 6.1,
+        serviceability: "SERVICEABLE",
+        slaString: "31 mins",
+        lastMileTravelString: "6.1 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-12 00:00:00",
+        opened: true,
+      },
+      badges: {
+        imageBadges: [
+          {
+            imageId: "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+            description: "OnlyOnSwiggy",
+          },
+        ],
+        textExtendedBadges: [
+          {
+            iconId: "guiltfree/GF_Logo_android_3x",
+            shortDescription: "options available",
+            fontColor: "#7E808C",
+          },
+        ],
+      },
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "OnlyOnSwiggy",
+                  imageId:
+                    "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+                },
+              },
+            ],
+          },
+          textBased: {},
+          textExtendedBadges: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "",
+                  fontColor: "#7E808C",
+                  iconId: "guiltfree/GF_Logo_android_3x",
+                  shortDescription: "options available",
+                },
+              },
+            ],
+          },
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "60% OFF",
+        subHeader: "UPTO ₹110",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/the-bowl-company-marredpally-west-marredpally-hyderabad-122340",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "156158",
+      name: "The Good Bowl",
+      cloudinaryImageId: "6e04be27387483a7c00444f8e8241108",
+      locality: "Diamond Point Secunderabad FC",
+      areaName: "Karkhana",
+      costForTwo: "₹400 for two",
+      cuisines: [
+        "Biryani",
+        "North Indian",
+        "Pastas",
+        "Punjabi",
+        "Desserts",
+        "Beverages",
+      ],
+      avgRating: 4,
+      feeDetails: {
+        restaurantId: "156158",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 4100,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 4100,
+      },
+      parentId: "7918",
+      avgRatingString: "4.0",
+      totalRatingsString: "1K+",
+      sla: {
+        deliveryTime: 35,
+        lastMileTravel: 3,
+        serviceability: "SERVICEABLE",
+        slaString: "35 mins",
+        lastMileTravelString: "3.0 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-11 23:59:00",
+        opened: true,
+      },
+      badges: {},
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {},
+          textBased: {},
+          textExtendedBadges: {},
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "ITEMS",
+        subHeader: "AT ₹169",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/the-good-bowl-diamond-point-secunderabad-fc-karkhana-hyderabad-156158",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "680290",
+      name: "Soul Rasa",
+      cloudinaryImageId: "631ba5a932f85c15e5f123dd690c6edc",
+      locality: "West Marredpally",
+      areaName: "Kharkhana & Trimulgherry",
+      costForTwo: "₹300 for two",
+      cuisines: [
+        "Indian",
+        "Healthy Food",
+        "Home Food",
+        "South Indian",
+        "North Indian",
+      ],
+      avgRating: 4.2,
+      feeDetails: {
+        restaurantId: "680290",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 6400,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 6400,
+      },
+      parentId: "239281",
+      avgRatingString: "4.2",
+      totalRatingsString: "1K+",
+      sla: {
+        deliveryTime: 34,
+        lastMileTravel: 6.1,
+        serviceability: "SERVICEABLE",
+        slaString: "34 mins",
+        lastMileTravelString: "6.1 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-11 23:30:00",
+        opened: true,
+      },
+      badges: {
+        imageBadges: [
+          {
+            imageId: "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+            description: "OnlyOnSwiggy",
+          },
+        ],
+      },
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {
+            badgeObject: [
+              {
+                attributes: {
+                  description: "OnlyOnSwiggy",
+                  imageId:
+                    "v1690360529/Ratnesh_Badges/Only_on_swiggy_badge_4x.png",
+                },
+              },
+            ],
+          },
+          textBased: {},
+          textExtendedBadges: {},
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "60% OFF",
+        subHeader: "UPTO ₹120",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/soul-rasa-west-marredpally-kharkhana-and-trimulgherry-hyderabad-680290",
+      type: "WEBLINK",
+    },
+  },
+  {
+    info: {
+      id: "17103",
+      name: "KFC",
+      cloudinaryImageId: "f01666ac73626461d7455d9c24005cd4",
+      locality: "Near Suchitra Junction X Road",
+      areaName: "Jeedimetla",
+      costForTwo: "₹400 for two",
+      cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
+      avgRating: 4,
+      feeDetails: {
+        restaurantId: "17103",
+        fees: [
+          {
+            name: "BASE_DISTANCE",
+            fee: 5900,
+          },
+          {
+            name: "BASE_TIME",
+          },
+          {
+            name: "ANCILLARY_SURGE_FEE",
+          },
+        ],
+        totalFee: 5900,
+      },
+      parentId: "547",
+      avgRatingString: "4.0",
+      totalRatingsString: "10K+",
+      sla: {
+        deliveryTime: 26,
+        lastMileTravel: 5,
+        serviceability: "SERVICEABLE",
+        slaString: "26 mins",
+        lastMileTravelString: "5.0 km",
+        iconType: "ICON_TYPE_EMPTY",
+      },
+      availability: {
+        nextCloseTime: "2023-12-12 01:00:00",
+        opened: true,
+      },
+      badges: {},
+      isOpen: true,
+      type: "F",
+      badgesV2: {
+        entityBadges: {
+          imageBased: {},
+          textBased: {},
+          textExtendedBadges: {},
+        },
+      },
+      aggregatedDiscountInfoV3: {
+        header: "20% OFF",
+        subHeader: "UPTO ₹50",
+      },
+      differentiatedUi: {
+        displayType: "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        differentiatedUiMediaDetails: {
+          mediaType: "ADS_MEDIA_ENUM_IMAGE",
+          lottie: {},
+          video: {},
+        },
+      },
+      reviewsSummary: {},
+      displayType: "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+      restaurantOfferPresentationInfo: {},
+    },
+    analytics: {},
+    cta: {
+      link: "https://www.swiggy.com/restaurants/kfc-near-suchitra-junction-x-road-jeedimetla-hyderabad-17103",
+      type: "WEBLINK",
+    },
+  },
+]; 
+const Body =()=>{
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className ="res-container">
+       {
+        resList.map((restaurant) =>
+          <Restaurantcard key = {restaurant.info.id}resData = {restaurant} /> //mentioning key is crucial when we use map method & used "<Restauarant card ..../>" as a JSX element
+        ) 
+       }
+
+
+
+      </div>
+    </div>
+  )
+    
+}
+
+
+
+
+
+ const AppLayout=()=>{
+  return(
+      <div className="app">
+        <Header/>
+        <Body/>
+      </div>
+  )
+}
+
+
+const root=ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout></AppLayout>)
+
+
+
+
+
+*/
