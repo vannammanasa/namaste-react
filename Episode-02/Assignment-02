@@ -1,0 +1,86 @@
+
+
+1. What is NPM?
+  - Most of us think that NPM is acronym for "Node packet manager",but it isn't.
+  - It is a standard repository for all the packages/dependencies and behind the scenes, it acts as a node packet manager.
+
+2. What is 'Parcel/Webpack'?Why do we use it?
+  - The code we write needs to be bundled/cored/packed/cleaned before sending it to the production and this can be done by putting all our own code and other dependencies into a single js file,known as "Bundler".
+- Bundler libraries are Webpack, Parcel,Vue etc.,
+- For installing parcel --> "npm install -D parcel"(D- for Development)
+
+
+
+3. What is "parcel-cache"?
+ - It stores information about our project when parcel builds & when it rebuilds,it doesnt have to reanalyze everything from scratch.Thus it's the reason for the fastness in development mode
+
+
+4. What is "npx"?
+- npx is used for executing a package, whereas "npm" is used for installing.
+- npx is used to avoid unnecessary packages,dependency issues
+
+
+
+
+5. Dfference b/w "Dependencies& devDependencies"?
+
+- Devdependencies are only used for local environment and dependencies are used/required only at production time.
+
+6. Treeshaking?
+
+- It is a term refers to "remove unwanted code"/dead-code elimination.By doing this, Website performance will get improved and reduces build size.
+- The concept of tree-shaking is really important when it comes to building an optimized codebase because it can significantly reduce the bundle size of the application that is being developed. The dependencies we installed in our application can result in a laggy performance for our applications.
+- The reason is because most of the packages we install really don’t need all of their dependencies and this results in importing large bundles where we end up needing just a small part of the bundle.
+
+
+
+7."HotModule Replacement" ?
+
+- (HMR) With this, allowing all kind of modules to be updated at a runtime without a full refresh package.json is the file where all the dependencies, scripts and some configurations are stored.
+
+8. 5 super powers of Parcel :-
+  - Differential bundling -->Differential bundling is the concept of sending various copies of your code to different targets and letting the browser decide which one to download.Modern browsers support syntaxes such as classes, arrow functions, async/await, and more, in addition to import and export syntaxes.Instead of transpiling modern syntax into older JavaScript versions, shipping it can reduce bundle sizes and improve load times.
+  - minification of our file
+  - Image optimization
+  - Error handling
+  - Tree shaking
+  - Compression of ourfile
+  - Code splitting files  -->Out of the box, Parcel enables code splitting without needing configuration. This allows you to break up your application code into distinct bundles that can be loaded and cached in parallel, resulting in reduced initial bundle sizes and faster load times.Ex:- The dynamic import() syntax, which functions as a regular import statement but returns a promise, is used to regulate code splitting. This indicates that the module can be loaded asynchronously.
+
+
+9. .gitignore.?why should we add or not add into it?
+ - It specifies intentionally to ignore the untracked file that GIT should ignore.
+ - Although there is no special command but it checks some patterns from multiple sources.Ex:- A blank line matches no files, so it can serve as a separator for readability.
+ -Trailing spaces are ignored unless they are quoted with backslash ("\").
+
+
+10. difference between package.json and package-lock.json and why should not we modify package-lock.json?
+- Package.json:-
+  -- More than just dependencies, it also establishes a project's attributes, descriptions, and license information. i.e, it contains basic information about our project and records important metadata about the project
+  --The root directory of your project has a JSON file. The data in our package.json is critical to the project's success. It comprises human-readable and functional information about the project, such as the project name and description, the package version number, and a list of dependencies needed by the application. 
+
+- Package-lock.json:-
+ -- It describes the exact tree that was generated to allow subsequent installs to have the identical tree.
+ -- It allows future devs to install the same dependencies in the project.
+ -- It contains the name, dependencies, and locked version of the project.
+ -- The purpose of package-lock.json is to ensure that the same dependencies are installed consistently across different environments, such as development and production environments.
+Ex:- If you are working in a team, it is important to commit package-lock.json to your version control system along with your code so that all team members have the same dependencies installed. When another developer clones the project, they can simply run npm-install to install the same packages and versions specified in the package-lock.json file.
+ 
+ 11. node_modules? Is it good idea to push them to git?
+ - Ex:-We can think of the node_modules folder like a cache for the external modules that our project depends upon. When we do  "npm install" them, they are downloaded from the web and copied into the node_modules folder and Node.js is trained to look for them there when you import them (without a specific path). Here, referring to it as a cache because the node_modules folder can be entirely recreated from scratch at any time by just reinstalling all the dependent modules (that should be listed in our project folders).
+
+
+
+12. dist folder?
+ - It's a distribution folder and is the minified/concatenated version which actually used on production sites
+ - If we refresh/save the console, this dist uses 'parcel-cache' to update it
+ - When we run a build process for a React project (using tools like webpack, Parcel, or Create React App), the build output is usually placed in a build or dist folder. This folder contains the production-ready code that is optimized for performance, with features like minification, bundling, and code splitting applied.
+
+3.BrowserList?
+ - Babel transforms our JS code from futuristic code to the code that is understandable by older browsers. Via a package called browserslist (which Parcel installed for us) we can Babel what browsers to target.
+
+
+
+
+
+
