@@ -1,0 +1,38 @@
+/* 1. Difference b/w named export,default export and * export?
+ -These are fundamental concepts that enable the modular structure of react applications.
+ - In JS, modules are individual files that contain code and this code can be objects,functions,classes or react components.
+ Export:-
+  --This export keyword allows all the elements to be used in JS files,thus making code reusable and modular.
+  --This export is of 2 types,Default export(This can be used when a file exports only 1-component).
+  Ex:- export default resList
+       import resList from "../utils/mockdata"
+
+  --Named export(These are used when a file exports multiple components or values).
+  Ex:-export const CDN_URL="";
+      import {CDN_URL} from "../utils/constants";
+
+
+  --Alternatively, we can use the * symbol to import all the named exports from a file as an object, which is very similar to other languages like python and java.
+  Ex:- import * as utils from '../utils'; 
+
+      
+
+
+
+2.Importance of config.js file
+--In this file, Hard coded data(such as urls,strings) will be put .Also known as "utils.js"
+ex:-config.js or utils.js
+
+3. React Hooks
+--Hooks let us use different React features from your components.React Hook is a normal JS utility function 
+
+
+4. Usestate():-
+  --It generates superpowerful state variable in react.
+  --As soon as state variable updates,react will re-render our component.
+  
+
+  Ex: import {usestate} from 'react';
+
+
+  */
