@@ -1,0 +1,121 @@
+
+1. Diff. b/w Microservice & Monolithic?
+ -- A monolithic app is built a a single-unified unit while a Microservice is a collection of smaller,independently deployable services.
+ Ex:- Netflix became one of the first high-profile companies to successfully migrate from a monolith to a cloud-based microservices architecture. 
+ --A monolithic architecture is a singular, large computing network with one code base that couples all of the business concerns together.  To make a change to this sort of application requires updating the entire stack by accessing the code base and building and deploying an updated version of the service-side interface. This makes updates restrictive and time-consuming.
+ --Whereas,in Microservices is an architectural method that relies on a series of independently deployable services. These services have their own business logic and database with a specific goal. Updating, testing, deployment, and scaling occur within each service. Microservices decouple major business, domain-specific concerns into separate, independent code bases. Microservices don’t reduce complexity, but they make any complexity visible and more manageable by separating tasks into smaller processes that function independently of each other and contribute to the overall whole. 
+
+
+2. why do we need a useEffect() hook?
+  --useEffect() is a react hook which will be used besides useStates()hook.We often use this hook whenever we need to run some sideeffects(like sending http requests  in our component.)
+--The job of react is to render and re-render UI whenever needed (after changing state, props). 
+--Other than this like sending http requests to the backend server, updating global variables inside the component, saving or updating caches etc. are considered as side effects. 
+--We should not use side effects inside the main component as it may create bugs like sending too many http requests.
+Syntax:- useEffect( ()=>{} , [dependencies] ). 
+It takes two arguments separated with a comma, 
+first — a function that we want to execute whenever useEffect runs. 
+— Second — an array of dependencies.
+
+
+3. Optional Chaining?
+--The optional chaining operator ?. takes the reference to its left and checks if it is undefined or null. If the reference is either of these nullish values, the checks will stop and return undefined. Otherwise, the chain of access checks will continue down the happy path to the final value.
+
+Ex:--const user = {
+  id:23,
+  name:"manasa",
+  address:{
+    city:"Ap",
+    country:"India",
+    geo:{
+      lat:57.9,
+      long:67.6,
+    }
+  }
+
+}
+
+const lat = user.address && user.address.geo && user.address.geo.lat; //without optional chaining
+const lat = user?.address.?.geo?.lat;
+
+
+4. Shimmer UI?
+ -- Ex:- I needed a custom Image component to asynchronously load images in React,then shimmer can play a vital role
+
+
+-- react-shimmer is a powerful, highly customizable React <img> component that simulates a shimmer effect while the image is loading. (with zero dependencies!).
+
+
+
+5. Diff b/w JS Expression & JS Statement?
+
+-- An expression is any valid unit of code that resolves to a value. 
+-- A statement is a unit of code that performs an action. 
+Some examples:-
+
+ // Statements
+let x = 0;
+function add(a, b) {
+   return a + b; 
+   }
+if (true)
+ { console.log('Hi');
+  }
+
+// Expressions
+x;          // Ans is 0
+3 + x;      // Ans is 3
+add(1, 2); //Ans is 3
+
+ ---Anywhere JavaScript expects a statement, you can also write an expression. This kind of statement is called an "expression statement". Conversely, you cannot write a statement where JavaScript expects an expression.
+
+
+6. COnditional Rendering with a code example?
+  --In React, conditional rendering is the process of displaying different content based on certain conditions or states. It allows you to create dynamic user interfaces that can adapt to changes in data and user interactions.
+
+Ex:- function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  return (
+    <div>
+      {isLoggedIn && <h1>Welcome back!</h1>}
+    </div>
+  );
+}
+
+
+
+7. CORS?
+ --CORS (Cross-Origin Resource Sharing) mechanism which uses additional HTTP header to tell the browser whether a specific web App can share resource with another web app.
+  -- For instance, if there are 2-web app,having same origin - they can share easily.
+  -- Else,having different origins, need to follow CORS mechanism.
+
+Adv:- CORS exists to protect the internet from evil hackers.
+
+8. async() and await()?
+ -- Async() is a keyword used before the function to create asynchronous functions.
+ --Syntax:- 
+      async function getData(){
+          return "Namaste";
+      }
+
+      --The above code always return a promise
+ --Await()is used in async() function.
+ -- It is used infront of promise.
+ --Both are used to handle async promises now a days, before that we had ".then()" method.
+
+ Ex:- const p = new Promie((resolve,reject)=>{
+  resolve("Promise has been resolved");
+ });
+ async function handlePromise(){
+  const val = await p:
+
+ }
+9. use of 'const json = await data.json()' in getRestaurants ? 
+ -- The data object, returned by the await fetch(), is a generic placeholder for multiple data formats. so we can extract the JSON object from a fetch response by using await data.json(). data.json() is a method on the data object that lets you extract a JSON object from the data or response. The method returns a promise because we have used await keyword. so data.json() returns a promise resolved to a JSON object.
+
+ Ex:-   const fetchData = async()=>{
+
+  const data = await fetch(api_url);
+  const json= await data.json();
+  console.log(json);
+
+
