@@ -1,0 +1,21 @@
+1. Various ways to add images into our App?Explain with code exammples
+2. what'd happen if we do console.log(useState())?
+3. How'll useEffect work if we dont have dependency array?
+4. SPA?
+  -- Single Page Application is a web app/website that interacts with the user by 
+
+
+5. Client side routing v Server Side routing?
+- The routing mechanism can be implemented on either the client or server side. In general, all frameworks (front-end and back-end) implement routing internally and execute different functionalities based on URL changes or user requests.
+
+
+  a-The Server side routing is not a part of React router but still the most common form of handling routes.
+  --Ex:- When a user clicks on a link on a webpage, another whole page is loaded and rendered onto the screen. The URL path is updated to match where the user is in the current state of the web page.
+  -This “whole page” that is loaded and rendered is done through the server. Server-side routing is what causes the whole page to refresh because we are making another request to our server, which is providing us with a brand new page to display.
+
+  The main drawback to using server-side routing is the varied time it can take content to display on a page. If the page, the user is requesting will still have that header and footer information displayed onto the screen, then why would we need to reload this information?
+
+
+
+
+
