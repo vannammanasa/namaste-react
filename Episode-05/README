@@ -1,0 +1,7 @@
+# Folder structure -src
+                 -components
+# Never keep any hard coded datat in the components section.Best practice is to mention them in utils/constants.js
+# Two types of exports& imports --Named & default export
+# React hooks - Normal JS utility function
+        - useState() - super powerful variable
+        - useEffect()
